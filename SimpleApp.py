@@ -2,13 +2,18 @@
 # An object of Flask class is our WSGI application.
 from flask import Flask, render_template, request, redirect
 import sqlite3
+import psycopg2
+import os
 import webbrowser
 # Flask constructor takes the name of
 # current module (__name__) as argument.
 app = Flask(__name__)
+def get_db_connection():
+    return psycopg2.connect(os.environ['DATABASE_URL'], sslmode='require')
+
 
 def init_db():
-    conn = sqlite3.connect('barmitzva.db')
+    conn = get_db_connection()
     c = conn.cursor()  # cursor
     c.execute('''
         CREATE TABLE IF NOT EXISTS responses(
@@ -34,7 +39,7 @@ def submit():
         members=0
     else:
         members=request.form.get('members')
-    conn = sqlite3.connect('barmitzva.db')
+    conn = get_db_connection()
     c = conn.cursor()  # cursor
     try:
         c.execute('''
