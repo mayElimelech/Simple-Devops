@@ -4,12 +4,24 @@ from flask import Flask, render_template, request, redirect
 import sqlite3
 import psycopg2
 import os
-import webbrowser
-# Flask constructor takes the name of
-# current module (__name__) as argument.
+
+DB_HOST = "dpg-d0plevbuibrs73fuonc0-a.oregon-postgres.render.com"
+DB_PORT = 5432
+DB_NAME = "guestslist"
+DB_USER = "guestslist_user"
+DB_PASSWORD = "Njc2Lsxt9xL26DJxQl8w62OKRAuqmosk"
+
 app = Flask(__name__)
 def get_db_connection():
-    return psycopg2.connect(os.environ['DATABASE_URL'], sslmode='require')
+        # Connect to the database
+        conn = psycopg2.connect(
+            dbname=DB_NAME,
+            user=DB_USER,
+            password=DB_PASSWORD,
+            host=DB_HOST,
+            port=DB_PORT
+        )
+        return  conn
 
 
 def init_db():
@@ -56,8 +68,6 @@ def submit():
     conn.commit()
     conn.close()
     return redirect('/')
-
-
 # main driver function
 if __name__ == '__main__':
 
