@@ -56,14 +56,14 @@ def submit():
     try:
         c.execute('''
                     INSERT INTO responses (first_name, last_name, attendes, members)
-                    VALUES (?, ?, ?, ?)
+                    VALUES (%s, %s, %s, %s)
                 ''', (first_name,last_name, attendes, members)
                   )
     except:
         c.execute('''
                     UPDATE responses
-                    SET attendes = ?, members = ?
-                    WHERE first_name = ? AND last_name = ?
+                    SET attendes = %s, members = %s
+                    WHERE first_name = %s AND last_name = %s
                 ''', (attendes, members, first_name, last_name))
     conn.commit()
     conn.close()
