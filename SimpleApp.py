@@ -53,25 +53,27 @@ def submit():
         members=request.form.get('members')
     conn = get_db_connection()
     c = conn.cursor()  # cursor
-    try:
-        c.execute('''
-                    INSERT INTO responses (first_name, last_name, attendes, members)
-                    VALUES (%s, %s, %s, %s)
-                ''', (first_name,last_name, attendes, members)
-                  )
-    except:
-        c.execute('''
-                    UPDATE responses
-                    SET attendes = %s, members = %s
-                    WHERE first_name = %s AND last_name = %s
-                ''', (attendes, members, first_name, last_name))
+    c.execute('''INSERT INTO responses (first_name, last_name, attendes, members)
+        VALUES (%s, %s, %s, %s)
+        ON CONFLICT (first_name, last_name)
+        DO UPDATE SET
+            attendes = EXCLUDED.attendes,
+            members = EXCLUDED.members;
+    ''', (first_name, last_name, attendes, members))
     conn.commit()
     conn.close()
     return redirect('/')
+
+def sqlQueries():
+    conn = get_db_connection()
+    c = conn.cursor()  # cursor
+    c.execute("SELECT * FROM responses;")
+    rows = c.fetchall()
+    for row in rows:
+        print(row)
+    conn.commit()
+    conn.close()
 # main driver function
 if __name__ == '__main__':
 
-    # run() method of Flask class runs the application
-    # on the local development server.
-    init_db()
-    app.run()
+    sqlQueries()
