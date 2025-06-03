@@ -39,19 +39,19 @@
 
       <h2>מגיעים ? </h2>
       <br/><br/>
-      <div class="wrapper">
-         <input type="radio" name="attendes" id="option-1" value="yes">
- <input type="radio" name="attendes" id="option-2" value="no">
-   <label for="option-1" class="option option-1">
-     <div class="dot"></div>
-      <span>כן </span>
-      </label>
-   <label for="option-2" class="option option-2">
-     <div class="dot"></div>
-      <span>לא </span>
-   </label>
-      </div>
-    <br/><br/>
+              <div class="wrapper">
+               <input type="radio" name="attendes" id="option-1" value="yes" hidden>
+        <label for="option-1" class="option option-1">
+          <div class="dot"></div>
+          כן
+        </label>
+
+        <input type="radio" name="attendes" id="option-2" value="no" hidden>
+        <label for="option-2" class="option option-2">
+          <div class="dot"></div>
+          לא
+        </label>
+            <br/><br/>
        <div class="form-group" id="members-group" style="display: none;">
 
       <h2> כמה תגיעו ? </h2>
@@ -145,28 +145,36 @@
 
   .wrapper {
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: center;
-    background: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.2);
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: nowrap;
+  margin-top: 10px;
+  margin-bottom: 10px;
   }
 
   .option {
-    flex: 1 1 40%;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 2px solid lightgrey;
-    padding: 10px;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: 0.3s;
-    background: #fff;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 14px;
+  font-size: 16px;
+  border: 2px solid lightgrey;
+  border-radius: 8px;
+  background-color: #fff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  gap: 6px;
+  min-width: 80px;
   }
+    .option .dot {
+  height: 14px;
+  width: 14px;
+  background: #d9d9d9;
+  border-radius: 50%;
+  position: relative;
+  flex-shrink: 0;
+}
 
   .option span {
     font-size: 18px;
