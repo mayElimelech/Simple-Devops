@@ -227,10 +227,11 @@
 
 </style>
 <script>
-  document.addEventListener('DOMContentLoaded', function () {
+ document.addEventListener('DOMContentLoaded', function () {
     const yesOption = document.getElementById('option-1');
     const noOption = document.getElementById('option-2');
     const membersGroup = document.getElementById('members-group');
+    const form = document.getElementById('rsvpForm');
 
     function toggleMembersGroup() {
       if (yesOption.checked) {
@@ -242,7 +243,6 @@
 
     yesOption.addEventListener('change', toggleMembersGroup);
     noOption.addEventListener('change', toggleMembersGroup);
-  });
 
     form.addEventListener('submit', function (e) {
       const firstName = document.getElementById('first_name').value.trim();
@@ -250,14 +250,14 @@
       const attendsYes = yesOption.checked;
       const attendsNo = noOption.checked;
 
-      // Validate names and attendance
+      // Validate names and attendance choice
       if (!firstName || !lastName || (!attendsYes && !attendsNo)) {
         alert("אנא מלא את כל השדות");
         e.preventDefault();
         return;
       }
 
-      // If coming (yes), must select number of attendees
+      // If coming, validate number of attendees
       if (attendsYes) {
         const members = document.querySelector('input[name="members"]:checked');
         if (!members) {
