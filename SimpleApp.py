@@ -39,7 +39,7 @@ def init_db():
     conn.close()
 @app.route('/',methods=['GET'])
 def homePage():
-    return render_template("example.html")
+    return render_template("testPage.html")
 
 
 @app.route('/submit',methods=['POST'])
