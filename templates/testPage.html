@@ -11,7 +11,7 @@
 
     <form method="POST" action="/submit" id="rsvpForm">
       <div class="formbold-form-title">
-        <h2 class="">מלאו את הפרטים הבאים: </h2>
+        <h2 >מלאו את הפרטים הבאים: </h2>
       </div>
 
       <div class="formbold-input-flex">
@@ -82,6 +82,17 @@
     box-sizing: border-box;
      font-family: "Lato", sans-serif;
   }
+  @font-face {
+  font-family: 'Dana Yad';
+  src: url('/static/fonts/DanaYadAlefAlefAlefNormal.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+h2 {
+  font-family: 'Dana Yad', sans-serif;
+  direction: rtl; /* For Hebrew */
+}
   body {
     font-family: 'Inter', sans-serif;
     padding: 20px;
