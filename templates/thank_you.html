@@ -2,36 +2,46 @@
 <html lang="he" dir="rtl">
 <head>
   <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>תודה רבה!</title>
   <style>
-       @font-face {
-  font-family: 'Dana Yad';
-  src: url('/static/DanaYadAlefAlefAlefNormal.ttf') format('truetype');
-  font-weight: normal;
-  font-style: normal;
-}
-         h1 {
- color: #536387;
-  font-family: 'Dana Yad', sans-serif;
-  direction: rtl; /* For Hebrew */
-}
-     body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-    background-color: #F9F5E1;
-    text-align: center;
-  }
+    @font-face {
+      font-family: 'Dana Yad';
+      src: url('/static/DanaYadAlefAlefAlefNormal.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+    }
+
+    h1 {
+      color: #536387;
+      font-family: 'Dana Yad', sans-serif;
+      direction: rtl;
+      font-size: 6vw; /* Responsive size for mobile */
+      margin: 10px 0;
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      padding: 20px;
+      background-color: #F9F5E1;
+      text-align: center;
+    }
+
+    @media (min-width: 600px) {
+      h1 {
+        font-size: 2.5em; /* Larger size on tablets and up */
+      }
+    }
   </style>
 </head>
 <body>
-  <div >
-    <h1>תודה ,
-    </h1>
-      <br/>
-      <h1>נשמח לראותכם !</h1>
+  <div>
+    <h1>תודה,</h1>
+    <h1>נשמח לראותכם!</h1>
   </div>
 </body>
 </html>
