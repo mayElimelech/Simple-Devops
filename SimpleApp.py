@@ -72,9 +72,8 @@ def sqlQueries():
     c = conn.cursor()  # cursor
     c.execute("SELECT * FROM responses;")
     rows = c.fetchall()
-    for row in rows:
-        print(row)
     conn.close()
+    return '<br>'.join([str(row) for row in rows])
 # main driver function
 if __name__ == '__main__':
 
