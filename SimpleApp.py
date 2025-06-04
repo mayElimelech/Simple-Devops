@@ -73,7 +73,55 @@ def sqlQueries():
     c.execute("SELECT * FROM responses;")
     rows = c.fetchall()
     conn.close()
-    return '<br>'.join([str(row) for row in rows])
+    html = """
+       <html lang="he" dir="rtl">
+       <head>
+           <meta charset="UTF-8">
+           <title>Responses Table</title>
+           <style>
+               body {
+                   font-family: Arial, sans-serif;
+                   background-color: #F9F5E1;
+                   padding: 20px;
+                   text-align: center;
+               }
+               table {
+                   margin: 0 auto;
+                   border-collapse: collapse;
+                   width: 80%;
+                   direction: rtl;
+               }
+               th, td {
+                   border: 1px solid #ccc;
+                   padding: 12px;
+                   font-size: 18px;
+               }
+               th {
+                   background-color: #f0d98c;
+               }
+           </style>
+       </head>
+       <body>
+           <h2>תשובות שהתקבלו</h2>
+           <table>
+               <tr>
+                   <th>שם פרטי</th>
+                   <th>שם משפחה</th>
+                   <th>מגיעים?</th>
+                   <th>מספר משתתפים</th>
+               </tr>
+       """
+
+    for row in rows:
+        html += "<tr>" + "".join(f"<td>{cell}</td>" for cell in row) + "</tr>"
+
+    html += """
+           </table>
+       </body>
+       </html>
+       """
+
+    return html
 # main driver function
 if __name__ == '__main__':
 
