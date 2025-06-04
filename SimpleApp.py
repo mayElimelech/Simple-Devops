@@ -66,7 +66,7 @@ def submit():
 @app.route('/thank-you')
 def thank_you():
     return render_template('thank_you.html')
-
+@app.route('/responses',methods=['GET'])
 def sqlQueries():
     conn = get_db_connection()
     c = conn.cursor()  # cursor
@@ -74,7 +74,6 @@ def sqlQueries():
     rows = c.fetchall()
     for row in rows:
         print(row)
-    conn.commit()
     conn.close()
 # main driver function
 if __name__ == '__main__':
