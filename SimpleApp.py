@@ -1,6 +1,6 @@
 # Importing flask module in the project is mandatory
 # An object of Flask class is our WSGI application.
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, url_for
 import sqlite3
 import psycopg2
 import os
@@ -62,7 +62,10 @@ def submit():
     ''', (first_name, last_name, attendes, members))
     conn.commit()
     conn.close()
-    return redirect('/')
+    return redirect(url_for('thank_you'))
+@app.route('/thank-you')
+def thank_you():
+    return render_template('thank_you.html')
 
 def sqlQueries():
     conn = get_db_connection()
